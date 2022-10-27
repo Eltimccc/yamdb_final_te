@@ -69,10 +69,10 @@ class Command(BaseCommand):
                 row.append("is_staff")
                 row.append("is_active")
                 row.append("date_joined")
-            sql_hdr = f"INSERT INTO `{tbl_t}` ({', '.join(row)})"
+            f"INSERT INTO `{tbl_t}` ({', '.join(row)})"
         else:
-            sql_hdr = f"INSERT INTO `{tbl_t}`"
-        return sql_hdr
+            f"INSERT INTO `{tbl_t}`"
+        return f"INSERT INTO `{tbl_t}` ({', '.join(row)})"
 
     def data_handler(self, row, file_name):
         """
@@ -101,5 +101,4 @@ class Command(BaseCommand):
             vals += "'no', "
             vals += "'yes', "
             vals += "'2022-09-16T21:08:21.567Z', "
-        sql_fld_values = vals[0:-2]
-        return sql_fld_values
+        return vals[0:-2]
