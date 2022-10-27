@@ -2,6 +2,7 @@ from http import HTTPStatus
 
 from django.core.mail import send_mail
 from django.db.models import Avg
+from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins, permissions, status, viewsets
 from rest_framework.decorators import action
@@ -12,24 +13,17 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
-from api_yamdb.settings import ADMIN_EMAIL, USER
 from reviews.models import Category, Comment, Genre, Review, Title, User
-from django.shortcuts import get_object_or_404
+
+from api_yamdb.settings import ADMIN_EMAIL, USER
 
 from .filters import TitleFilter
 from .permissons import IsAdmin, IsAdminOrReadOnly, IsAuthorOrModerator
-from .serializers import (
-    AdminsSerializer,
-    CategorySerializer,
-    CommentSerializer,
-    GenreSerializer,
-    GetTokenSerializer,
-    ReviewSerializer,
-    SignUpSerializer,
-    TitleAdminSerializer,
-    TitleUserSerializer,
-    UsersSerializer,
-)
+from .serializers import (AdminsSerializer, CategorySerializer,
+                          CommentSerializer, GenreSerializer,
+                          GetTokenSerializer, ReviewSerializer,
+                          SignUpSerializer, TitleAdminSerializer,
+                          TitleUserSerializer, UsersSerializer)
 
 
 class UsersViewSet(viewsets.ModelViewSet):
