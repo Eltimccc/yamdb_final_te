@@ -1,0 +1,5 @@
+*/temp*
+*.md
+!README.md
+*venv
+*/__pycache__
